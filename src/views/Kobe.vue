@@ -4,7 +4,7 @@
         src="../assets/OIP-C.jpg">
 
     <!-- audio 的三个媒体事件：播放 / 暂停 / 播完，都交给 syncPlayState 同步状态 -->
-    <audio ref="audio" src="/See you again.mp3" @play="syncPlayState" @pause="syncPlayState" @ended="handleEnded"></audio>
+    <audio ref="audio" src="/See you again.mp3" @play="syncPlayState" @pause="syncPlayState" @ended="syncPlayState"></audio>
     <div class="lyric-container">
         <div class="lyric-wrapper" :style="{ transform: 'translateY(-' + currentLineNum * 32 + 'px)' }">
             <p v-for="(line, index) in lyric.lines" :key="index" :class="{ active: index === currentLineNum }">
@@ -105,11 +105,6 @@ export default {
             if (!this.$refs.audio) return
             this.isPlaying = !this.$refs.audio.paused
         },
-        // 歌曲播完：同步状态 + 停掉歌词（否则歌曲结束后歌词还会自己继续"滚"）
-        handleEnded() {
-            this.syncPlayState()
-            this.lyric && this.lyric.stop()
-        }
     },
     // 注意：钩子名必须是 created（多一个 d），写成 create 永远不会被 Vue 调用
     created() {

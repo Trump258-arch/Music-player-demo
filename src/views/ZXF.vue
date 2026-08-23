@@ -168,9 +168,11 @@ export default {
   overflow: hidden;
   margin: 20px auto;
 }
+
 .lyric-wrapper {
   transition: transform 0.3s ease;
 }
+
 .lyric-wrapper p {
   height: 32px;
   line-height: 32px;
@@ -180,6 +182,7 @@ export default {
   font-size: 20px;
   transition: all 0.3s ease;
 }
+
 /* 当前高亮歌词（现在是白底页面，用深色；以后加了深色背景可改回 #fff） */
 .lyric-wrapper p.active {
   color: #333;
