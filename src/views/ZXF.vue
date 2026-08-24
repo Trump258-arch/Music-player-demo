@@ -107,7 +107,7 @@ export default {
         // audio.currentTime 单位是"秒"，lyric-parser 要的是"毫秒"，所以要 ×1000
         // 再减去 lyricOffset：把歌词的"时钟"往回拨 2 秒，让每句歌词晚 2 秒出现
         // 第二个参数 true：不立刻补发上一句歌词
-        this.lyric.play(this.$refs.audio.currentTime * 1000 - this.lyricOffset, true)
+        this.lyric.play(audio.currentTime * 1000 - this.lyricOffset, true)
         // 暂停状态 → 播放
       } else {
         await audio.pause()

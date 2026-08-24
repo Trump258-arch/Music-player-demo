@@ -4,20 +4,33 @@
     <!-- router-link 渲染出来就是一个 <a> 标签，点击后切换路由页面 -->
     <HelloWorld @sendClickhander="handleSendClickhander" msg="Welcome to Your Vue.js App" />
     <div style="font-size:50px;text-align:center;margin-top:50px">
-      <router-link to="/zxf">张雪峰</router-link>|           |
+      <router-link to="/zxf">张雪峰</router-link>|
       <router-link to="/kobe">科比</router-link>
+      <p>{{ getCounter }}</p>
+      <button @click="addClick">点击</button>
     </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
+import { mapGetters,mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  computed:{
+    ...mapGetters(["getCounter"])
+  },
+  methods: {
+    ...mapMutations(["addCounter"]) ,
+    addClick(){
+      this.addCounter(10);
+    }
   }
+
 }
 </script>
 
