@@ -8,27 +8,31 @@
       <router-link to="/kobe">科比</router-link>
       <p>{{ getCounter }}</p>
       <button @click="addClick">点击</button>
-        
+      <button @click="exitHandler">退出登录</button>
     </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from '../components/HelloWorld.vue'
-import { mapGetters,mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld
   },
-  computed:{
+  computed: {
     ...mapGetters(["getCounter"])
   },
   methods: {
-    ...mapMutations(["addCounter"]) ,
-    addClick(){
+    ...mapMutations(["addCounter"]),
+    addClick() {
       this.addCounter(10);
+    },
+    exitHandler(){
+       localStorage.removeItem('token')
+       this.$router.push('/')
     }
   }
 
