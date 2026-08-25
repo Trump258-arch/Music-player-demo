@@ -11,6 +11,11 @@ export default {
 </script>
 
 <style>
+/* 浏览器默认给 body 留了 8px 外边距，会把居中内容挤偏、还多出滚动条，先清掉 */
+body {
+  margin: 0;
+}
+
 /* #app 是 index.html 里的挂载点，这里放"所有页面通用"的样式，比如全局字体 */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

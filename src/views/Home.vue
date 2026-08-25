@@ -8,6 +8,7 @@
       <router-link to="/kobe">科比</router-link>
       <p>{{ getCounter }}</p>
       <button @click="addClick">点击</button>
+        
     </div>
   </div>
 </template>
