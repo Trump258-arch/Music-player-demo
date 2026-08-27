@@ -1,9 +1,9 @@
 <template>
-    <span style="font-size:150px" @click="handleClick">{{ Kobe }}</span><!--v-bind:属性可以简写为:-->
-    <div v-html="text"></div>
-    <div v-for="item in items" :key="item.id">
-      <p v-if="item.sit === '活着'">{{ item.name }}</p>
-    </div>
+  <span style="font-size:60px" @click="handleClick">{{ Kobe }}</span><!--v-bind:属性可以简写为:-->
+  <div v-html="text"></div>
+  <div v-for="item in items" :key="item.id">
+    <p v-if="item.sit === '活着'">{{ item.name }}</p>
+  </div>
 </template>
 
 <script>
@@ -26,11 +26,17 @@ export default {
   methods: {
     handleClick() {
       this.Kobe = '牢大坠机了';
-      return this.Kobe;
     },
-    sendClickhander(){
-      this.$emit('sendClickhander',this.Kobe);
+    sendClickhander() {
+      this.$emit('sendClickhander', this.Kobe);
     }
   }
 }
 </script>
+
+<style scoped>
+span {
+  display: block;
+  text-align: left;
+}
+</style>
