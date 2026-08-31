@@ -12,6 +12,9 @@
         <p>{{ getCounter +'m'}}</p>
         <button @click="addClick">点击进行跑步</button>
         <button @click="exitHandler">退出登录</button>
+        <div>
+          
+        </div>
       </div>
       <div class="backgroundImg">
         <!-- 两张英雄图叠在一起铺满盒子，v-show 按"当前选中的英雄"决定显示哪张 -->

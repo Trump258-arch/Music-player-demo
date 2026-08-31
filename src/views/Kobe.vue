@@ -1,18 +1,24 @@
 <template>
-    <!-- 科比页：专辑封面（点击播放/暂停）+ 音乐 + 返回链接 -->
-    <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="Kobe"
-        src="../assets/OIP-C.jpg">
+    <div class="bgd">
+        <div style="background: rgba(255,255,255,0.9); 
+  backdrop-filter: blur(6px);">
+            <!-- 科比页：专辑封面（点击播放/暂停）+ 音乐 + 返回链接 -->
+            <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="Kobe"
+                src="../assets/OIP-C.jpg">
 
-    <!-- audio 的三个媒体事件：播放 / 暂停 / 播完，都交给 syncPlayState 同步状态 -->
-    <audio ref="audio" src="/See you again.mp3" @play="syncPlayState" @pause="syncPlayState" @ended="syncPlayState"></audio>
-    <div class="lyric-container">
-        <div class="lyric-wrapper" :style="{ transform: 'translateY(-' + currentLineNum * 32 + 'px)' }">
-            <p v-for="(line, index) in lyric.lines" :key="index" :class="{ active: index === currentLineNum }">
-                {{ line.txt }}
-            </p>
+            <!-- audio 的三个媒体事件：播放 / 暂停 / 播完，都交给 syncPlayState 同步状态 -->
+            <audio ref="audio" src="/See you again.mp3" @play="syncPlayState" @pause="syncPlayState"
+                @ended="syncPlayState"></audio>
+            <div class="lyric-container">
+                <div class="lyric-wrapper" :style="{ transform: 'translateY(-' + currentLineNum * 32 + 'px)' }">
+                    <p v-for="(line, index) in lyric.lines" :key="index" :class="{ active: index === currentLineNum }">
+                        {{ line.txt }}
+                    </p>
+                </div>
+            </div>
+            <router-link to="/">返回首页</router-link>
         </div>
     </div>
-    <router-link to="/">返回首页</router-link>
 </template>
 
 <script>
@@ -148,7 +154,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .lyric-container {
     width: 700px;
     height: 200px;
@@ -175,5 +181,12 @@ export default {
     color: #333;
     font-size: 30px;
     font-weight: bold;
+}
+
+.bgd {
+    background-image:url(../assets/OIP-C.jpg);
+    background-size: contain;
+    width:100vw;
+    height: 100wh;
 }
 </style>

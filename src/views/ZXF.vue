@@ -1,17 +1,22 @@
 <template>
-  <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="ZXF"
-    src="/img/icons/张雪峰老师.webp">
+  <div class="bgd">
+    <div style="background: rgba(255,255,255,0.9); 
+  backdrop-filter: blur(6px);">
+      <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="ZXF"
+        src="/img/icons/张雪峰老师.webp">
 
-  <audio ref="audio" src="/念张师.mp3" @play="syncPlayState" @pause="syncPlayState" @ended="syncPlayState"></audio>
-  <div class="lyric-container">
-    <div class="lyric-wrapper" :style="{ transform: 'translateY(-' + currentLineNum * 32 + 'px)' }">
-      <p v-for="(line, index) in lyric.lines" :key="index" :class="{ active: index === currentLineNum }">
-        {{ line.txt }}
-      </p>
+      <audio ref="audio" src="/念张师.mp3" @play="syncPlayState" @pause="syncPlayState" @ended="syncPlayState"></audio>
+      <div class="lyric-container">
+        <div class="lyric-wrapper" :style="{ transform: 'translateY(-' + currentLineNum * 32 + 'px)' }">
+          <p v-for="(line, index) in lyric.lines" :key="index" :class="{ active: index === currentLineNum }">
+            {{ line.txt }}
+          </p>
+        </div>
+      </div>
+      <div>
+        <router-link to="/">返回首页</router-link>
+      </div>
     </div>
-  </div>
-  <div>
-    <router-link to="/">返回首页</router-link>
   </div>
 </template>
 
@@ -188,5 +193,12 @@ export default {
   color: #333;
   font-size: 30px;
   font-weight: bold;
+}
+
+.bgd {
+  background-image: url(../../public/img/icons/张雪峰老师.webp);
+  background-size: contain;
+  width: 100vw;
+  height: 100wh;
 }
 </style>
