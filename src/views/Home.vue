@@ -18,6 +18,8 @@
       </div>
       <div class="backgroundImg">
         <!-- 两张英雄图叠在一起铺满盒子，v-show 按"当前选中的英雄"决定显示哪张 -->
+        <div class="hero-img" v-show="currentHero === ''"
+          style="background-image: url('/img/icons/科比和梅西.jpg');"></div>
         <div class="hero-img" v-show="currentHero === 'zxf'"
           style="background-image: url('/img/icons/张雪峰老师.webp');"></div>
         <div class="hero-img" v-show="currentHero === 'kobe'"
@@ -41,7 +43,7 @@ export default {
   },
   data() {
     return {
-      currentHero: 'zxf',   // 当前选中的英雄：'zxf' 显示张雪峰图，'kobe' 显示科比图
+      currentHero: '',   // 当前选中的英雄：'zxf' 显示张雪峰图，'kobe' 显示科比图
       oip                   // 关键：import 的图片必须放进 data，模板里才能访问到
     }
   },

@@ -14,7 +14,7 @@
         </div>
       </div>
       <div>
-        <router-link to="/">返回首页</router-link>
+        <router-link to="/home">返回首页</router-link>
       </div>
     </div>
   </div>
