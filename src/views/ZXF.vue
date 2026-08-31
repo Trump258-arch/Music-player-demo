@@ -1,16 +1,23 @@
 <template>
   <div class="bgd">
     <div style="background: rgba(255,255,255,0.9); 
-  backdrop-filter: blur(6px);">
-      <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="ZXF"
-        src="/img/icons/张雪峰老师.webp">
-
+  backdrop-filter: blur(6px);height: 100vh;width: 100vw;">
+      <!-- 标题行：用 flex 布局。
+           span 是行内元素（inline-block 也一样），宽度收缩到刚好包住文字，
+           text-align: right 写在它自己身上没有富余空间可用，等于白写。
+           换成 flex 容器：给 span 设 margin-left: auto，它会吸收所有剩余空间，
+           把自己挤到最右边 -->
+      <div style="display: flex; align-items: center;">
+        <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="ZXF"
+          src="/img/icons/张雪峰老师.webp">
+        <span style="font-size: 60px;margin-right: auto;">念张师(深情版)</span>
+      </div>
       <audio ref="audio" src="/念张师.mp3" @play="syncPlayState" @pause="syncPlayState" @ended="syncPlayState"></audio>
       <div class="lyric-container">
         <div class="lyric-wrapper" :style="{ transform: 'translateY(-' + currentLineNum * 32 + 'px)' }">
           <p v-for="(line, index) in lyric.lines" :key="index" :class="{ active: index === currentLineNum }">
             {{ line.txt }}
-          </p>
+          </p> 
         </div>
       </div>
       <div>
@@ -199,6 +206,6 @@ export default {
   background-image: url(../../public/img/icons/张雪峰老师.webp);
   background-size: contain;
   width: 100vw;
-  height: 100wh;
+  height: 100vh; /* 之前写成了 100wh：wh 不是合法单位，这行高度一直是失效的 */
 }
 </style>

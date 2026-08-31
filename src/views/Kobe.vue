@@ -1,11 +1,13 @@
 <template>
     <div class="bgd">
-        <div style="background: rgba(255,255,255,0.9); 
+        <div style="background: rgba(255,255,255,0.9);height: 100vh;width: 100vw; 
   backdrop-filter: blur(6px);">
             <!-- 科比页：专辑封面（点击播放/暂停）+ 音乐 + 返回链接 -->
-            <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="Kobe"
-                src="../assets/OIP-C.jpg">
-
+            <div style="display: flex; align-items: center;">
+                <img id="album-img" @click="playAudio()" :style="{ transform: 'rotate(' + deg + 'deg)' }" alt="Kobe"
+                    src="../assets/OIP-C.jpg">
+                <span style="font-size: 60px;margin-right: auto;">See you Again(左巴羊版)</span>
+            </div>
             <!-- audio 的三个媒体事件：播放 / 暂停 / 播完，都交给 syncPlayState 同步状态 -->
             <audio ref="audio" src="/See you again.mp3" @play="syncPlayState" @pause="syncPlayState"
                 @ended="syncPlayState"></audio>
@@ -184,9 +186,9 @@ export default {
 }
 
 .bgd {
-    background-image:url(../assets/OIP-C.jpg);
+    background-image: url(../assets/OIP-C.jpg);
     background-size: contain;
-    width:100vw;
+    width: 100vw;
     height: 100wh;
 }
 </style>
