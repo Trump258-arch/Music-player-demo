@@ -40,17 +40,18 @@ router.beforeEach((to, from, next) => {
   // 1. 从本地取出登录标记
   const hasToken = localStorage.getItem('token')
 
-  // 2. 判断：想去的不是登录页，并且没登录
+  // 2. 判断：想去的不是登录页，并且没登录 → 打回登录页
   if (to.path !== '/' && !hasToken) {
-    // 打回登录页
     next('/')
+  } else if (to.path === '/' && hasToken) {
+    // 已登录就别再看登录页了，直接进首页
+    next('/home')
   } else {
     // 其他情况一律放行
     next()
   }
-  if (to.path === '/' && hasToken) {
-    next('/home')    // 已登录就别再看登录页了，直接进首页
-  }
+  // 注意：一个守卫里 next() 只能被调用一次，
+  // 所以三个分支必须用 if / else if / else 串成一条链，保证互斥
 })
 
 export default router
