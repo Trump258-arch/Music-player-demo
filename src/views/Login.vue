@@ -25,25 +25,44 @@
 </template>
 
 <script>
+import axios from 'axios'
+// 用 axios 发请求必须先在文件顶部 import，否则 script 里 axios 是"未定义"的
+
 export default {
     name: "Login",
     data() {
         // data 必须是函数且 return 一个对象，模板里的 {{ login }} 和 v-model 才有数据可用
         return {
-            loginStatus:'',
+            loginStatus: '',
             text: null,
             psd: null
         }
     },
     methods: {
         clickHandler() {
-            if (this.text === "123456" && this.psd === "123456") {
-                // 用路由跳转（window.open 会新开标签页，且 /Home 和路由表的 /home 对不上）
-                this.$router.push('/home')
-                localStorage.setItem('token', 'login-success-flag')
-            } else {
-                this.loginStatus = '输入错误去见牢大'
-            }
+            const login = axios.create({
+                baseURL: 'http://localhost:3000',
+                timeout: 5000,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            // get(网址, 配置对象)：第二个参数必须包在大括号里，params 是它的一个属性
+            login.get('/api/login', {
+                params: {
+                    username: this.text,
+                    password: this.psd
+                }
+            }).then((res) => {
+                if (res.data.status === 200) {
+                    this.$router.push('/home')
+                    localStorage.setItem('token', 'login-success-flag')
+                } else {
+                    this.loginStatus = '输入错误去见牢大'
+                }
+            }).catch((err) => {
+                console.log(err.message);
+            })
         }
     }
 }
