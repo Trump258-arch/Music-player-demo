@@ -66,7 +66,7 @@ export default {
   color: #000000;
   font-size: 18px;
   border-radius: 4px;
-  border-color: #000000;
+  border: 2px solid #000000;
   white-space: nowrap;
   z-index: 999;
 }
